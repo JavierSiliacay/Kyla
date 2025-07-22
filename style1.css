@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff6b9d, #ffc0cb, #ff69b4);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite;
+}
+
+.heart-player {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 2rem;
+}
+
+.audio-btn {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff1744, #e91e63);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    border: 3px solid rgba(255,255,255,0.3);
+}
+
+.audio-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+    background: linear-gradient(45deg, #ff4569, #ff1744);
+}
+
+.audio-btn:active {
+    transform: scale(0.95);
+}
+
+.audio-btn.playing {
+    animation: heartbeat 1s infinite;
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+}
+
+.btn-number {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.heart-icon {
+    font-size: 1.5rem;
+    margin-top: 2px;
+}
+
+/* Heart shape positioning */
+.top-left {
+    top: 20px;
+    left: 60px;
+}
+
+.top-right {
+    top: 20px;
+    right: 60px;
+}
+
+.center {
+    top: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(45deg, #d81b60, #ad1457);
+}
+
+.center:hover {
+    background: linear-gradient(45deg, #e91e63, #c2185b);
+}
+
+.bottom-left {
+    bottom: 40px;
+    left: 80px;
+}
+
+.bottom-right {
+    bottom: 40px;
+    right: 80px;
+}
+
+.playing-info {
+    background: rgba(255,255,255,0.9);
+    padding: 15px 25px;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+#now-playing {
+    color: #d81b60;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Floating hearts background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(255,182,193,0.3) 2px, transparent 2px),
+        radial-gradient(circle at 80% 80%, rgba(255,105,180,0.3) 2px, transparent 2px),
+        radial-gradient(circle at 40% 60%, rgba(255,20,147,0.2) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px, 80px 80px;
+    animation: float 10s infinite linear;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .heart-player {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .audio-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1rem;
+    }
+    
+    .center {
+        width: 70px;
+        height: 70px;
+    }
+}
